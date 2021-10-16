@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Giphy Search Engine</title>
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		<div class="container container-padding50">
+			<input type="text" class="js-userinput container-textinput" value="Type what you want to search"/>
+			<button class="js-go container-button">Go!</button>
+			
+		</div>
+		<div class="container container-padding50 js-container">
+			<!---displaying the welcome picture-->
+			<script>
+				
+			    var url="http://api.giphy.com/v1/gifs/search?q=happy+dance+sheep&api_key=dc6zaTOxFJmzC"; 
+			    var AJAXCall=new XMLHttpRequest();
+			    AJAXCall.open('GET',url);
+			    AJAXCall.onload=function(){
+					
+				    var ourData=JSON.parse(AJAXCall.response).data[0].images.fixed_height.url;
+				    
+				    var container=document.querySelector(".js-container");
+				    container.innerHTML+="<img class=\"default_image\" src=\""+ourData+"\">";
+			    }
+				AJAXCall.send()
+
+			</script>
+
+		</div>
+		<script src="javascript/main.js"></script>
+	</body>
+</html>
